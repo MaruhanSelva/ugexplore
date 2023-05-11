@@ -93,7 +93,7 @@ class MiningBoard:
         if x > self.size - 1 or y > self.size - 1:
             print("FAILED, OUT OF BOUNDS")
         else:
-            self.damage += 10
+            self.damage += 7
             cells = hammer_cells(self.size, x, y)
             self.l3[cells[0]] = 0
             self.l2[cells[0]] = 0
@@ -109,7 +109,7 @@ class MiningBoard:
         if x > self.size or y > self.size:
             print("FAILED, OUT OF BOUNDS")
         else:
-            self.damage += 5
+            self.damage += 4
             cell = self.size * x + y
             if (self.l3[cell] == 0):
                 self.l2[cell] = 0

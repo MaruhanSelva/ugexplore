@@ -5,7 +5,7 @@ from pygame.locals import *
 
 from src.modules.button import Button
 
-def win(screen, wins):
+def win(screen, wins, endless):
     from src.pages.mining import mining
     from src.pages.menu import main_menu
 
@@ -41,15 +41,15 @@ def win(screen, wins):
                     sys.exit()
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     if REPLAY_BUTTON.checkForInput(MOUSE_POS):
-                        mining(screen, wins)
+                        mining(screen, wins, endless)
                     
                     if MENU_BUTTON.checkForInput(MOUSE_POS):
-                         main_menu(screen, wins)
+                         main_menu(screen, 0)
 
                     
         pygame.display.update()
 
-def lose(screen, wins):
+def lose(screen, wins, endless):
     from src.pages.mining import mining
     from src.pages.menu import main_menu
 
@@ -85,10 +85,10 @@ def lose(screen, wins):
                     sys.exit()
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     if REPLAY_BUTTON.checkForInput(MOUSE_POS):
-                        mining(screen, wins)
+                        mining(screen, wins, endless)
                     
                     if MENU_BUTTON.checkForInput(MOUSE_POS):
-                        main_menu(screen, wins)
+                        main_menu(screen, 0)
 
                     
         pygame.display.update()

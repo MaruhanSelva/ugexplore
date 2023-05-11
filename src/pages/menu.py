@@ -29,10 +29,17 @@ def main_menu(screen, wins):
                              text_input="play", font=pygame.font.Font("assets/fonts/BlockOutline.ttf", 70), base_color="#d7fcd4", hovering_color="White")
         
 
+        ENDLESS_BUTTON = Button(image=pygame.image.load("assets/images/PlayRect.png"), pos=(640, 550), 
+                             text_input="endless", font=pygame.font.Font("assets/fonts/BlockOutline.ttf", 70), base_color="#d7fcd4", hovering_color="White")
+        
+
         screen.blit(MENU_TEXT, MENU_RECT)
 
         PLAY_BUTTON.changeColor(MENU_MOUSE_POS)
         PLAY_BUTTON.update(screen)
+
+        ENDLESS_BUTTON.changeColor(MENU_MOUSE_POS)
+        ENDLESS_BUTTON.update(screen)
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -41,8 +48,11 @@ def main_menu(screen, wins):
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if PLAY_BUTTON.checkForInput(MENU_MOUSE_POS):
                     ## PLAY SCREEN
-                    print("Hello")
-                    mining(screen, wins)
+                    mining(screen, wins, False)
+                elif ENDLESS_BUTTON.checkForInput(MENU_MOUSE_POS):
+                    mining(screen, wins, True)
+
+
             
                     
 

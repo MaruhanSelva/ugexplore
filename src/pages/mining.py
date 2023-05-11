@@ -36,8 +36,7 @@ ggem_big = pygame.transform.scale(ggem, DEFAULT_IMAGE_SIZE)
 treasures = [ogem_big, ggem_big, ogem_big, ggem_big]
 
 
-
-def mining(screen, wins):
+def mining(screen, wins, endless):
     from src.pages.menu import main_menu
 
     running = True
@@ -63,6 +62,8 @@ def mining(screen, wins):
     pygame.draw.rect(screen, (0, 0, 0), pygame.Rect(995, 410, 110, 110))
     pygame.draw.rect(screen, (220,20,60), pygame.Rect(1000, 415, 100, 100))
 
+    pygame.draw.rect(screen, BROWN_COL, pygame.Rect(150, 300, 50, 300))
+
     HAMMER = True
 
     tr = m.get_treasures()
@@ -80,6 +81,22 @@ def mining(screen, wins):
         # Back Button
         back_button = Button(resizeb, (50, 50), "", font=pygame.font.Font("assets/fonts/BlockOutline.ttf", 70), base_color="#d7fcd4", hovering_color="White")
         back_button.update(screen)
+
+        if endless:
+            score = pygame.font.Font("freesansbold.ttf", 70).render(str(wins), True, BROWN_COL, BEIGE_COL)
+            scoreRect = score.get_rect(center=(175, 150))
+            screen.blit(score, scoreRect)
+        
+
+        dmg_label = pygame.font.Font("freesansbold.ttf", 20).render("DMG", True, BROWN_COL, BEIGE_COL)
+        dmgRect = dmg_label.get_rect(center=(175, 290))
+        screen.blit(dmg_label, dmgRect)
+
+        t_val = 600 - m.get_dmg() * 3
+        length = m.get_dmg() * 3
+        pygame.draw.rect(screen, (255, 0, 0), pygame.Rect(150, t_val, 50, length))
+
+
 
         # Hammer/Chisel Buttons
         hammer_button = Button(resizeh, (1050, 245), "", font=pygame.font.Font("assets/fonts/BlockOutline.ttf", 70), base_color="#d7fcd4", hovering_color="White")
@@ -107,12 +124,10 @@ def mining(screen, wins):
                 t = Tile(RESIZEROCK, (lval + 50 , tval + 50))
                 tiles.append(t)
                 t.update(screen)
-                # pygame.draw.rect(screen, GRAY_COL, pygame.Rect(lval, tval, 75, 75))
             elif layer == 2:
                 t = Tile(RESIZESAND, (lval + 50 , tval + 50))
                 tiles.append(t)
                 t.update(screen)
-                #pygame.draw.rect(screen, BEIGE_COL, pygame.Rect(lval, tval, 100, 100))
             elif layer == 1:
                 
                 if i in tr:
@@ -126,7 +141,6 @@ def mining(screen, wins):
 
                 tiles.append(t)
                 t.update(screen)
-                # pygame.draw.rect(screen, BROWN_COL, pygame.Rect(lval, tval, 100, 100))
                 
             col = col + 1
 
@@ -134,10 +148,15 @@ def mining(screen, wins):
         # Game Ending Conditions
         if tr_count == treasure:
             wins = wins + 1
-            win(screen, wins)
+            if endless:
+                m = MiningBoard(size)
+                m.place_treasure(treasure)
+                pygame.draw.rect(screen, BROWN_COL, pygame.Rect(150, 300, 50, 300))
+            else:
+                win(screen, wins, endless)
         
         if m.get_dmg() >= 100:
-            lose(screen, wins)
+            lose(screen, wins, endless)
 
         
         # Event Handling
@@ -161,7 +180,7 @@ def mining(screen, wins):
                 elif chisel_button.checkForInput(MOUSE_POS):
                     HAMMER = False
                 elif back_button.checkForInput(MOUSE_POS):
-                    main_menu(screen, wins)
+                    main_menu(screen, 0)
 
                 
         pygame.display.update()
