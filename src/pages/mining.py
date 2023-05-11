@@ -49,20 +49,26 @@ def mining(screen, wins, endless):
     m = MiningBoard(size)
     m.place_treasure(treasure)
 
+
+    # Gameboard Styling
     pygame.draw.rect(screen, (128, 0, 0), pygame.Rect(315, 35, 650, 650))
     pygame.draw.rect(screen, (184, 115, 51), pygame.Rect(320, 40, 640, 640))
     pygame.draw.rect(screen, (149, 69, 53), pygame.Rect(340, 60, 600, 600))
 
+    # Back button styling
     pygame.draw.rect(screen, (0, 0, 0), pygame.Rect(20, 20, 60, 60))
     pygame.draw.rect(screen, (255,255,255), pygame.Rect(25, 25, 50, 50))
 
-    pygame.draw.rect(screen, (0, 0, 0), pygame.Rect(995, 190, 110, 110))
-    pygame.draw.rect(screen, (135,206,250), pygame.Rect(1000, 195, 100, 100))
+    # Hammer Button Styling
+    pygame.draw.rect(screen, (0, 0, 0), pygame.Rect(195, 190, 110, 110))
+    pygame.draw.rect(screen, (135,206,250), pygame.Rect(200, 195, 100, 100))
 
-    pygame.draw.rect(screen, (0, 0, 0), pygame.Rect(995, 410, 110, 110))
-    pygame.draw.rect(screen, (220,20,60), pygame.Rect(1000, 415, 100, 100))
+    # Chisel Button Styling
+    pygame.draw.rect(screen, (0, 0, 0), pygame.Rect(195, 410, 110, 110))
+    pygame.draw.rect(screen, (220,20,60), pygame.Rect(200, 415, 100, 100))
 
-    pygame.draw.rect(screen, BROWN_COL, pygame.Rect(150, 300, 50, 300))
+    # Damage Bar
+    pygame.draw.rect(screen, BROWN_COL, pygame.Rect(120, 200, 50, 300))
 
     HAMMER = True
 
@@ -84,24 +90,22 @@ def mining(screen, wins, endless):
 
         if endless:
             score = pygame.font.Font("freesansbold.ttf", 70).render(str(wins), True, BROWN_COL, BEIGE_COL)
-            scoreRect = score.get_rect(center=(175, 150))
+            scoreRect = score.get_rect(center=(145, 130))
             screen.blit(score, scoreRect)
         
-
+        # Damage Bar
         dmg_label = pygame.font.Font("freesansbold.ttf", 20).render("DMG", True, BROWN_COL, BEIGE_COL)
-        dmgRect = dmg_label.get_rect(center=(175, 290))
+        dmgRect = dmg_label.get_rect(center=(145, 190))
         screen.blit(dmg_label, dmgRect)
 
-        t_val = 600 - m.get_dmg() * 3
+        t_val = 500 - m.get_dmg() * 3
         length = m.get_dmg() * 3
-        pygame.draw.rect(screen, (255, 0, 0), pygame.Rect(150, t_val, 50, length))
-
+        pygame.draw.rect(screen, (255, 0, 0), pygame.Rect(120, t_val, 50, length))
 
 
         # Hammer/Chisel Buttons
-        hammer_button = Button(resizeh, (1050, 245), "", font=pygame.font.Font("assets/fonts/BlockOutline.ttf", 70), base_color="#d7fcd4", hovering_color="White")
-        chisel_button = Button(resizec, (1050, 465), "", font=pygame.font.Font("assets/fonts/BlockOutline.ttf", 70), base_color="#d7fcd4", hovering_color="White")
-        
+        hammer_button = Button(resizeh, (250, 245), "", font=pygame.font.Font("assets/fonts/BlockOutline.ttf", 70), base_color="#d7fcd4", hovering_color="White")
+        chisel_button = Button(resizec, (250, 465), "", font=pygame.font.Font("assets/fonts/BlockOutline.ttf", 70), base_color="#d7fcd4", hovering_color="White")
         hammer_button.update(screen)
         chisel_button.update(screen)
         
@@ -151,7 +155,7 @@ def mining(screen, wins, endless):
             if endless:
                 m = MiningBoard(size)
                 m.place_treasure(treasure)
-                pygame.draw.rect(screen, BROWN_COL, pygame.Rect(150, 300, 50, 300))
+                pygame.draw.rect(screen, BROWN_COL, pygame.Rect(120, 200, 50, 300))
             else:
                 win(screen, wins, endless)
         

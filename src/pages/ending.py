@@ -18,12 +18,12 @@ def win(screen, wins, endless):
         MOUSE_POS = pygame.mouse.get_pos()
 
         ENDING_TEXT = pygame.font.Font("assets/fonts/Block.ttf", 80).render("you won", True, "#F2EDA7")
-        ENDING_RECT = ENDING_TEXT.get_rect(center=(640, 200))
+        ENDING_RECT = ENDING_TEXT.get_rect(center=(500, 200))
 
-        REPLAY_BUTTON = Button(image=pygame.image.load("assets/images/PlayRect.png"), pos=(640, 400), 
+        REPLAY_BUTTON = Button(image=pygame.image.load("assets/images/PlayRect.png"), pos=(500, 400), 
                             text_input="replay", font=pygame.font.Font("assets/fonts/BlockOutline.ttf", 70), base_color="#d7fcd4", hovering_color="White")
 
-        MENU_BUTTON = Button(image=pygame.image.load("assets/images/PlayRect.png"), pos=(640, 550), 
+        MENU_BUTTON = Button(image=pygame.image.load("assets/images/PlayRect.png"), pos=(500, 550), 
                             text_input="menu", font=pygame.font.Font("assets/fonts/BlockOutline.ttf", 70), base_color="#d7fcd4", hovering_color="White")
 
         REPLAY_BUTTON.changeColor(MOUSE_POS)
@@ -62,12 +62,12 @@ def lose(screen, wins, endless):
         MOUSE_POS = pygame.mouse.get_pos()
 
         ENDING_TEXT = pygame.font.Font("assets/fonts/Block.ttf", 80).render("the mine collapsed", True, "#000000")
-        ENDING_RECT = ENDING_TEXT.get_rect(center=(640, 200))
+        ENDING_RECT = ENDING_TEXT.get_rect(center=(500, 200))
 
-        REPLAY_BUTTON = Button(image=pygame.image.load("assets/images/PlayRect.png"), pos=(640, 400), 
+        REPLAY_BUTTON = Button(image=pygame.image.load("assets/images/PlayRect.png"), pos=(500, 400), 
                             text_input="replay", font=pygame.font.Font("assets/fonts/BlockOutline.ttf", 70), base_color="#000000", hovering_color="White")
 
-        MENU_BUTTON = Button(image=pygame.image.load("assets/images/PlayRect.png"), pos=(640, 550), 
+        MENU_BUTTON = Button(image=pygame.image.load("assets/images/PlayRect.png"), pos=(500, 550), 
                             text_input="menu", font=pygame.font.Font("assets/fonts/BlockOutline.ttf", 70), base_color="#000000", hovering_color="White")
 
         REPLAY_BUTTON.changeColor(MOUSE_POS)

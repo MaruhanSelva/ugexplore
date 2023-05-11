@@ -9,7 +9,7 @@ from src.pages.menu import main_menu
 pygame.init()
 
 # Initialize Screen
-screen = pygame.display.set_mode((1280, 720))
+screen = pygame.display.set_mode((1000, 720))
 
 # Title and Icon
 pygame.display.set_caption("Underground Explorers")
